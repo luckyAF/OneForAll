@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_tab_home"
+        android:icon="@drawable/test_ic_home"
+        android:title="主页" />
+    <item
+        android:id="@+id/item_tab_view"
+        android:icon="@drawable/test_ic_home"
+        android:title="view"
+        />
+    <item
+        android:id="@+id/item_tab_util"
+        android:icon="@drawable/test_ic_home"
+        android:title="util" />
+
+    <item
+        android:id="@+id/item_tab_anim"
+        android:icon="@drawable/test_ic_home"
+        android:title="anim" />
+</menu>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.luckyaf.oneforall.module.test">
+
+    <application>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/test_title_activity_main"
+            android:theme="@style/TestAppTheme.NoActionBar"></activity>
+
+        <activity android:name=".ui.view.drag.DragBackActivity"
+
+           android:theme="@style/Theme.AppCompat.Dialog"
+            />
+    </application>
+
+</manifest>
