@@ -1,0 +1,41 @@
+
+apply plugin: 'com.android.library'
+
+
+def libraryName = project.getName().replaceAll("lib_", "")
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
+        versionCode 1
+        versionName "1.0.0"
+        resourcePrefix libraryName + "_"
+        resValue "string", libraryName + "_library_name", project.getName()
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+
+    dependencies {
+    }
+}

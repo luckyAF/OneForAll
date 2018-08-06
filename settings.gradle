@@ -1,0 +1,1 @@
+include ':app',  ':component_common', ':component_common', ':module_mvp', ':module_test', ':lib_base', ':component_data', ':component_res', ':module_kotlin'

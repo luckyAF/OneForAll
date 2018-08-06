@@ -1,0 +1,75 @@
+//模块名称
+def moduleName = project.getName().replaceAll("module_", "")
+def isRunAlone = !rootProject.ext.merge.contains(moduleName)
+if (isRunAlone) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+
+
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        if (isRunAlone) {
+            applicationId rootProject.ext.android.organization + "." + moduleName
+            multiDexEnabled true
+        }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+                includeCompileClasspath true
+            }
+        }
+        versionCode 1
+        versionName "1.0.0"
+//        resourcePrefix moduleName + "_"
+//        resValue "string", moduleName + "_module_name", project.getName()
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+
+    if (isRunAlone) {
+        sourceSets {
+            main {
+                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+                java.srcDirs = ['src/main/java', 'src/main/java']
+                res.srcDirs = ['src/main/res', 'src/main/res']
+            }
+        }
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+
+    dependencies {
+        api project(':lib_base')
+        api project(':component_common')
+        api project(':component_data')
+        api project(':component_res')
+
+        if(isRunAlone){
+            annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+        }else{
+            compileOnly rootProject.ext.dependencies["arouter-compiler"]
+        }
+
+
+    }
+}

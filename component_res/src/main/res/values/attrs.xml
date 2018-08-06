@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--滑动关闭-->
+    <declare-styleable name="DragBackLayout">
+        <attr name="dragDismissDistance" format="dimension" />
+    </declare-styleable>
+
+
+</resources>
